@@ -7,8 +7,7 @@
 
 - name: opendkim socket configured
   lineinfile: dest=/etc/default/opendkim regexp=^SOCKET= line='SOCKET="inet:12301@localhost"'
-  notify:
-   - restart opendkim
+
 
 - name: opendkim directory present
   file: path=/etc/opendkim state=directory
@@ -16,34 +15,26 @@
 
 - name: opendkim TrustedHosts present
   copy: src=TrustedHosts dest=/etc/opendkim/TrustedHosts
-  notify:
-   - restart opendkim
+
 
 - name: opendkim is configured
   template: src=opendkim.conf.j2 dest=/etc/opendkim.conf
-  notify:
-   - restart opendkim
+
 
 - name: opendkim KeyTable is configured
   template: src=KeyTable.j2 dest=/etc/opendkim/KeyTable
-  notify:
-   - restart opendkim
+
 
 - name: opendkim SigningTable is configured
   template: src=SigningTable.j2 dest=/etc/opendkim/SigningTable
-  notify:
-   - restart opendkim
+
 
 - name: ensure signing key is present
   file: path=/etc/opendkim/keys/{{ item.key }} owner=opendkim group=opendkim
   with_items: "{{ dkim_domains }}"
-  notify:
-  - restart opendkim
+
 
 - name: chown and chmod /etc/opendkim
   file: path=/etc/opendkim state=directory owner=opendkim group=opendkim recurse=yes
-  notify:
-  - restart opendkim
 
-- name: opendkim is running
-  service: name=opendkim state=running enabled=yes
+
