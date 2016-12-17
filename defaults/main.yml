@@ -1,1 +1,2 @@
 opendkim_port: 8891 
+opendkim_iface: 'localhost'
