@@ -24,13 +24,16 @@ Ansible role for opendkim with postfix configuration on Debian
 
 ```yaml
 ---
-admin_email: 'admin@domain.com'
+---
+admin_email: 'amnay.mokhtari@web-education.net'
 dkim_domains: 
-  - domain: 'domain1.com'
-    selector: 'domain1'
-    key: 'domain1.private'
-  - domain: 'domain2.fr'
-    selector: 'domain2'
-    key: 'domain2.private'
-
+  - domain: 'neoscol.com'
+    selector: 'mail'
+    key: 'mail.private'
+  - domain: 'amnay.fr'
+    selector: 'amnay'
+    key: 'amnay.private'
+opendkim_iface: '172.17.0.2'
+opendkim_trusted_hosts: ['localhost', '127.0.0.1', '0.0.0.0/0', '172.17.0.0/24']
+postfix_mynetworks: '127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 172.17.0.0/24'
 ```
