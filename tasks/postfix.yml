@@ -12,9 +12,9 @@
 
 
 - name: postfix smtpd_milters is configured
-  lineinfile: dest=/etc/postfix/main.cf regexp=^smtpd_milters line="smtpd_milters = inet:localhost:{{ opendkim_port }}"
+  lineinfile: dest=/etc/postfix/main.cf regexp=^smtpd_milters line="smtpd_milters = inet:{{ opendkim_iface }}:{{ opendkim_port }}"
 
 
 - name: postfix non_smtpd_milters is configured
-  lineinfile: dest=/etc/postfix/main.cf regexp=^non_smtpd_milters line="non_smtpd_milters = inet:localhost:{{ opendkim_port }}"
+  lineinfile: dest=/etc/postfix/main.cf regexp=^non_smtpd_milters line="non_smtpd_milters = inet:{{ opendkim_iface }}:{{ opendkim_port }}"
 
