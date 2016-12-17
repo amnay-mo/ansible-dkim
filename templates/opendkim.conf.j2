@@ -19,4 +19,4 @@ SignatureAlgorithm      rsa-sha256
 
 UserID                  opendkim:opendkim
 
-Socket                  inet:{{ opendkim_port }}@localhost
+Socket                  inet:{{ opendkim_port }}@{{ opendkim_iface }}
