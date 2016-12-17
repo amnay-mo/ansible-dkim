@@ -13,8 +13,8 @@
   file: path=/etc/opendkim state=directory
   file: path=/etc/opendkim/keys state=directory
 
-- name: opendkim TrustedHosts present
-  copy: src=TrustedHosts dest=/etc/opendkim/TrustedHosts
+- name: opendkim TrustedHosts is configured
+  template: src=TrustedHosts.j2 dest=/etc/opendkim/TrustedHosts
 
 
 - name: opendkim is configured
