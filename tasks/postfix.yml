@@ -3,6 +3,9 @@
   apt: pkg=postfix state=installed
   tags: postfix
 
+- name: postfix mynetworks is configured
+  lineinfile: dest=/etc/postfix/main.cf regexp=^mynetworks line="mynetworks = {{ postfix_mynetworks }}"
+
 - name: postfix milter_protocol is configured
   lineinfile: dest=/etc/postfix/main.cf regexp=^milter_protocol line="milter_protocol = 2"
 
