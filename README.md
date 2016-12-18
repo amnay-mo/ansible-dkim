@@ -13,7 +13,7 @@ Ansible role for opendkim with postfix configuration on Debian
       file: path=/etc/opendkim/keys state=directory 
 
     - name: Pushing DKIM private keys
-      copy: src=keys/{{ item.key }} dest=/etc/opendkim/keys mode=0400
+      copy: src=keys/{{ item.key }} dest=/etc/opendkim/keys mode=0400 # mode 0400 is mandatory otherwise opendkim won't use the key
       with_items: "{{ dkim_domains }}"
   roles:
   - { role: ansible-dkim }
